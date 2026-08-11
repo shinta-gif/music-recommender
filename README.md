@@ -2,7 +2,7 @@
 
 楽曲の音響特徴量から「似た曲」を推薦するコンテンツベース推薦システム。
 
-![demo](<img width="1106" height="866" alt="Image" src="https://github.com/user-attachments/assets/0462e78f-4410-4f2d-ab83-4c087366d7b8" />)
+![demo](https://github.com/user-attachments/assets/111e406f-a94b-4842-be4a-86b81ebf9208)
 
 ## 概要
 
