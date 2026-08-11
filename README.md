@@ -2,6 +2,8 @@
 
 楽曲の音響特徴量から「似た曲」を推薦するコンテンツベース推薦システム。
 
+![demo](<img width="1106" height="866" alt="Image" src="https://github.com/user-attachments/assets/0462e78f-4410-4f2d-ab83-4c087366d7b8" />)
+
 ## 概要
 
 Spotifyの楽曲データ（約11万曲）から、danceability・energy・valence など9つの音響特徴量を使い、コサイン類似度で類似楽曲を推薦します。
