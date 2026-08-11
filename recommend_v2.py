@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -13,10 +14,15 @@ df = df.drop_duplicates(subset=["track_name", "artists"]).reset_index(drop=True)
 features = ["danceability", "energy", "loudness", "speechiness",
             "acousticness", "instrumentalness", "liveness", "valence", "tempo"]
 
+genre_dummies = pd.get_dummies(df["track_genre"]).astype(int)
+print(genre_dummies.shape)
+print(genre_dummies.head())
+
+
 # 標準化（単位がバラバラなので揃える）
 scaler = StandardScaler()
 X = scaler.fit_transform(df[features])
-
+X_new = np.hstack([X, genre_dummies.values * 0.3])
 
 def recommend(song_name, top_n=10):
     matches = df[df["track_name"].str.lower() == song_name.lower()]
@@ -25,7 +31,7 @@ def recommend(song_name, top_n=10):
         return
 
     idx = matches.index[0]
-    sim = cosine_similarity([X[idx]], X)[0]
+    sim = cosine_similarity([X_new[idx]], X_new)[0]
 
     df["_score"] = sim
     result = df.drop(index=idx).nlargest(top_n, "_score")
@@ -34,4 +40,4 @@ def recommend(song_name, top_n=10):
     print(result[["track_name", "artists", "track_genre", "_score"]].to_string(index=False))
 
 
-recommend("Comedy")
+recommend("insane")
